@@ -3,3 +3,15 @@
 
 en:
   hello: Hello world
+  spree:
+    brightcove_settings: Brightcove Settings
+    new_brightcove_setting: New Brightcove Setting
+    brightcove_player_id: Player Id
+    brightcove_account_id: Account Id
+    no_brightcove_settings_found: "No Brightcove Settings Found"
+    one_more_step: 'One more step to complete your registration from %{kind}'
+    remove_authentication_option_confirmation: "Are you sure you would like to remove this brightcove settings?"
+    sign_into_account: "You can sign into this account using:"
+    sign_in_through_one_of_these_services: "Sign in through one of these services:"
+    social_api_key: "API Key"
+    social_api_secret: "API Secret"

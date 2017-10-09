@@ -1,0 +1,35 @@
+<div data-hook="admin_brightcove_setting_form_fields" class="row">
+  <div class="alpha four columns">
+    <div data-hook="brightcove_account_id" class="field">
+      <%= f.label :brightcove_account_id %>
+      <%= f.text_field :brightcove_account_id, :class => 'fullwidth' %>
+    </div>
+
+    <div data-hook="brightcove_account_id" class="field">
+      <%= f.label :brightcove_player_id %>
+      <%= f.text_field :brightcove_player_id, :class => 'fullwidth' %>
+    </div>
+
+  </div>
+
+  <div class="omega four columns">
+    <div data-hook="active" class="field">
+      <%= f.label :active %>
+      <ul>
+        <li>
+          <%= radio_button(:brightcove_setting, :active, true) %>
+          <%= label_tag :brightcove_setting_active_true, Spree.t(:say_yes) %>
+        </li>
+        <li>
+          <%= radio_button(:brightcove_setting, :active, false) %>
+          <%= label_tag :brightcove_setting_active_false, Spree.t(:say_no) %>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="clear"></div>
+
+  <div data-hook="additional_brightcove_setting_fields"></div>
+
+</div>

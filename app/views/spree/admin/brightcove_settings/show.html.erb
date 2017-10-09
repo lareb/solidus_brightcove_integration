@@ -1,0 +1,54 @@
+<%= render 'spree/admin/shared/general_tabs' %>
+
+<% admin_breadcrumb(Spree.t(:settings)) %>
+<% admin_breadcrumb(Spree.t(:general_settings)) %>
+<% admin_breadcrumb(plural_resource_name(Spree::BrightcoveSetting)) %>
+
+<% content_for :page_actions do %>
+  <% if can?(:create, Spree::BrightcoveSetting) %>
+    <li>
+      <%= button_link_to Spree.t(:new_brightcove_setting), new_admin_brightcove_settings_path, :id => 'admin_new_brightcove_setting_link' %>
+    </li>
+  <% end %>
+<% end %>
+
+<%  unless @brightcove_setting.blank? %>
+  <table class="index">
+    <colgroup>
+      <col style="width: 30%">
+      <col style="width: 40%">
+      <col style="width: 15%">
+      <col style="width: 15%">
+    </colgroup>
+    <thead>
+      <tr data-hook="admin_brightcove_settings_index_headers">
+        <th><%= Spree::BrightcoveSetting.human_attribute_name(:brightcove_account_id) %></th>
+        <th><%= Spree::BrightcoveSetting.human_attribute_name(:brightcove_player_id) %></th>
+        <th><%= Spree::BrightcoveSetting.human_attribute_name(:active) %></th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr id="<%= spree_dom_id @brightcove_setting %>" data-hook="admin_brightcove_settings_index_rows" class="<%= cycle('odd', 'even')%>">
+          <td class="align-center"><%= @brightcove_setting.brightcove_account_id %></td>
+          <td class="align-center"><%= @brightcove_setting.brightcove_player_id %></td>
+          <td class="align-center"><%= @brightcove_setting.active ? Spree.t(:say_yes) : Spree.t(:say_no) %></td>
+          <td class="actions">
+            <% if can?(:update, @brightcove_setting) %>
+              <%= link_to_edit @brightcove_setting, :no_text => true, url: edit_admin_brightcove_settings_path() %>
+            <% end %>
+
+            <% if can?(:destroy, @brightcove_setting) %>
+              <%= link_to_delete @brightcove_setting, :no_text => true, url: admin_brightcove_settings_path() %>
+            <% end %>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+<% else %>
+  <div class="no-objects-found">
+    <%= render 'spree/admin/shared/no_objects_found',
+                 resource: Spree::BrightcoveSetting,
+                 new_resource_url: new_admin_brightcove_settings_path %>
+  </div>
+<% end %>
