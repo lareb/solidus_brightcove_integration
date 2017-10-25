@@ -22,7 +22,8 @@
     </colgroup>
     <thead>
       <tr data-hook="admin_brightcove_settings_index_headers">
-        <th><%= Spree::BrightcoveSetting.human_attribute_name(:analytics_id) %></th>
+        <th><%= Spree::BrightcoveSetting.human_attribute_name(:brightcove_account_id) %></th>
+        <th><%= Spree::BrightcoveSetting.human_attribute_name(:brightcove_player_id) %></th>
         <th><%= Spree::BrightcoveSetting.human_attribute_name(:active) %></th>
         <th class="actions"></th>
       </tr>
@@ -30,7 +31,8 @@
     <tbody>
       <% @brightcove_settings.each do |brightcove_setting|%>
         <tr id="<%= spree_dom_id brightcove_setting %>" data-hook="admin_brightcove_settings_index_rows" class="<%= cycle('odd', 'even')%>">
-          <td class="align-center"><%= brightcove_setting.analytics_id %></td>
+          <td class="align-center"><%= brightcove_setting.brightcove_account_id %></td>
+          <td class="align-center"><%= brightcove_setting.brightcove_player_id %></td>
           <td class="align-center"><%= brightcove_setting.active ? Spree.t(:say_yes) : Spree.t(:say_no) %></td>
           <td class="actions">
             <% if can?(:update, brightcove_setting) %>
@@ -52,3 +54,7 @@
                  new_resource_url: new_object_url %>
   </div>
 <% end %>
+
+
+<h2>Current Video Player</h2>
+<%= render partial: 'spree/shared/player', locals: {reference_id: Spree::Product.where.not(reference_id: nil).first.try(:reference_id)} %>
